@@ -1,0 +1,499 @@
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+/* Main Dashboard Area */
+.dashboard-main {
+  flex: 1;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #a8d5f7 0%, #7cc7f0 50%, #5bb8e8 100%);
+  display: flex;
+  flex-direction: column;
+  margin-left: 230px;
+  margin-right: 240px;
+  gap: 15px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Top Bar */
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  height: 50px;
+}
+
+.dashboard-topbar h2 {
+  color: #1a73e8;
+  font-size: 24px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.dashboard-searchbar {
+  position: relative;
+}
+
+.dashboard-searchbar input {
+  padding: 10px 18px 10px 40px;
+  width: 300px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.dashboard-searchbar input:focus {
+  outline: none;
+  border-color: #1a73e8;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+}
+
+.dashboard-searchbar .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* Top KPI Cards Row */
+.top-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  flex-shrink: 0;
+  height: 130px;
+}
+
+.kpi-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.kpi-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.kpi-chart {
+  width: 80px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.mini-line-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.kpi-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.kpi-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a73e8;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.kpi-change {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #34a853;
+}
+
+.kpi-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Middle Row */
+.middle-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+  height: 320px;
+  flex-shrink: 0;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.chart-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+  height: 25px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.day-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #666;
+  background: #f5f5f5;
+  transition: all 0.2s ease;
+}
+
+.tab.active {
+  background: #1a73e8;
+  color: white;
+}
+
+.chart {
+  flex: 1;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
+  position: relative;
+}
+
+/* Research Activities Card */
+.research-activities-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.research-activities-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.research-activities-card h4 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex: 1;
+  overflow: hidden;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item span:first-child {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.activity-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a73e8;
+}
+
+/* Bottom Row */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  flex: 1;
+  min-height: 280px;
+}
+
+.bottom-row .chart-card {
+  height: 100%;
+}
+
+.bottom-row .chart-card h4 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Profile Sidebar */
+.dashboard-profile {
+  width: 240px;
+  background: #eef1ff;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  font-size: 13px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 50;
+}
+
+.dashboard-profile img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 15px;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-profile h4 {
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.dashboard-profile p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 12px;
+}
+
+.progress-bar {
+  background: #ddd;
+  height: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.progress-bar-fill {
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(90deg, #5e5ce6, #1a73e8);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.hashtags {
+  margin-top: 20px;
+}
+
+.hashtags p {
+  font-weight: 600;
+  color: #333;
+  margin: 15px 0 8px 0;
+  font-size: 12px;
+}
+
+.hashtags span {
+  font-size: 10px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin: 3px 5px 5px 0;
+  display: inline-block;
+  border: 1px solid #dadce0;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.hashtags span:hover {
+  background: #1a73e8;
+  color: white;
+  cursor: pointer;
+}
+
+/* Custom Scrollbar */
+.dashboard-profile::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-profile::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-profile::-webkit-scrollbar-thumb {
+  background: rgba(26, 115, 232, 0.3);
+  border-radius: 3px;
+}
+
+.dashboard-profile::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 115, 232, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .dashboard-main {
+    margin-right: 0;
+  }
+  
+  .dashboard-profile {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-main {
+    margin-left: 200px;
+    padding: 12px;
+  }
+  
+  .top-cards-row {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .middle-row {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .bottom-row {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .dashboard-searchbar input {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    margin-left: 0;
+    padding: 10px;
+  }
+  
+  .dashboard-topbar {
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+  }
+  
+  .dashboard-topbar h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .dashboard-searchbar input {
+    width: 100%;
+  }
+}
+
+/* Animation for loading */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kpi-card,
+.chart-card,
+.research-activities-card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.top-cards-row .kpi-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.top-cards-row .kpi-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
