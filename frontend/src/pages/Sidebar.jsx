@@ -25,6 +25,20 @@ const Sidebar = ({ expandedItems, toggleExpanded, currentPage, handleNavigation,
       ] : []
     },
     { 
+      id: 'journals',
+      icon: "📖", 
+      label: "Journals", 
+      arrow: expandedItems.journals ? "▲" : "▼",
+      active: currentPage === 'journals',
+      expandable: true,
+      key: 'journals',
+      activeItem: currentPage === 'journals',
+      subItems: expandedItems.journals ? [
+        { label: "All Journals", active: activeSubItem === "All Journals" },
+        { label: "My Journals", active: activeSubItem === "My Journals" }
+      ] : []
+    },
+    { 
       id: 'profile',
       icon: "👤", 
       label: "Profile", 
@@ -117,6 +131,8 @@ const Sidebar = ({ expandedItems, toggleExpanded, currentPage, handleNavigation,
         onNavigate('publications');
       } else if (item.id === 'conferences' && onNavigate) {
         onNavigate('conferences');
+      } else if (item.id === 'journals' && onNavigate) {
+        onNavigate('journals');
       } else if (onNavigate) {
         onNavigate(item.id);
       }
