@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import './RohitPage.css';
+import FormsFormat from '../forms/formformat';
+import './rohitpage.css';
 
 const RohitPage = ({ onNavigate }) => {
   const [expandedItems, setExpandedItems] = useState({
@@ -18,6 +19,7 @@ const RohitPage = ({ onNavigate }) => {
   const [activeSubItem, setActiveSubItem] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showNewEventModal, setShowNewEventModal] = useState(false);
+  const [showForms, setShowForms] = useState(false);
   const [newEvent, setNewEvent] = useState({
     name: '',
     description: '',
@@ -138,6 +140,14 @@ const RohitPage = ({ onNavigate }) => {
     }
   };
 
+  const handleFormsClick = () => {
+    setShowForms(true);
+  };
+
+  const handleBackFromForms = () => {
+    setShowForms(false);
+  };
+
   const handleAppClick = () => {
     alert('App functionality - Navigate to applications');
   };
@@ -154,6 +164,20 @@ const RohitPage = ({ onNavigate }) => {
     conference.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     conference.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // If Forms is active, render FormsFormat component
+  if (showForms) {
+    return (
+      <div className="forms-container">
+        <div className="forms-header">
+          <button className="back-btn" onClick={handleBackFromForms}>
+            ← Back to Dashboard
+          </button>
+        </div>
+        <FormsFormat />
+      </div>
+    );
+  }
 
   return (
     <div className="app-container">
@@ -194,6 +218,7 @@ const RohitPage = ({ onNavigate }) => {
               </div>
             </div>
             <div className="action-buttons">
+              <button className="header-btn secondary" onClick={handleFormsClick}>Forms</button>
               <button className="header-btn primary" onClick={handleAppClick}>App</button>
               <button className="header-btn secondary" onClick={handleMessagesClick}>Messages</button>
               <button className="header-btn secondary" onClick={handleSettingsClick}>Settings</button>

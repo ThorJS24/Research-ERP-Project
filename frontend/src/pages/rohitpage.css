@@ -24,6 +24,43 @@ body {
   left: 0;
 }
 
+/* Forms Container */
+.forms-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #e8f4fd 0%, #c8e6fc 50%, #a8d5fb 100%);
+  overflow-y: auto;
+  position: relative;
+}
+
+.forms-header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.back-btn {
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1976d2;
+  border: 1px solid rgba(25, 118, 210, 0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+  background: #ffffff;
+  border-color: #1976d2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
 /* Sidebar */
 .side {
   width: 230px;
@@ -655,6 +692,11 @@ body {
   .content-header {
     padding: 20px;
   }
+
+  .forms-header {
+    top: 15px;
+    left: 15px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -685,6 +727,7 @@ body {
   
   .action-buttons {
     justify-content: center;
+    flex-wrap: wrap;
   }
   
   .modal-content {
@@ -694,5 +737,15 @@ body {
   
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .forms-header {
+    top: 10px;
+    left: 10px;
+  }
+
+  .back-btn {
+    padding: 10px 15px;
+    font-size: 13px;
   }
 }
