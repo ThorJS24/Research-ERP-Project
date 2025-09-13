@@ -290,7 +290,6 @@ const Login = ({ onLogin }) => {
             {isLoginMode && (
               <div className="demo-info">
                 <p><strong>Demo Credentials:</strong></p>
-                <p>Username: <code>deepak</code> | Password: <code>deepak123</code></p>
                 <p>Username: <code>john.doe</code> | Password: <code>password123</code></p>
               </div>
             )}
