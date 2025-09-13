@@ -302,7 +302,7 @@ const ElnaPage = ({ onNavigate }) => {
       {/* Profile Sidebar */}
       <div className="dashboard-profile">
         <img src="dr-deepak.jpg" alt="Profile" />
-        <h4>Dr. Deepak Krish</h4>
+        <h4>Dr. John Doe</h4>
         <p><strong>Research Grant Status</strong></p>
         <div className="progress-bar">
           <div className="progress-bar-fill"></div>

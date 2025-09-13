@@ -144,8 +144,8 @@ const HemantPage = ({ onNavigate }) => {
                 <img src="dr-deepak.jpg" alt="Dr. Deepak" />
               </div>
               <div className="user-details">
-                <h3>Dr. deepak</h3>
-                <p>(Doctor of Research)</p>
+                <h3>Dr. John Doe</h3>
+                <p>(Mathematics)</p>
               </div>
             </div>
             <div className="action-buttons">

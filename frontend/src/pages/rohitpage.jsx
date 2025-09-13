@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import FormsFormat from '../forms/formformat';
+import authService from '../login/authService'; // Import your auth service
 import './rohitpage.css';
 
-const RohitPage = ({ onNavigate }) => {
+const RohitPage = ({ onNavigate, onLogout }) => {
   const [expandedItems, setExpandedItems] = useState({
     home: false,
     conferences: true,
@@ -20,6 +21,8 @@ const RohitPage = ({ onNavigate }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showNewEventModal, setShowNewEventModal] = useState(false);
   const [showForms, setShowForms] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [newEvent, setNewEvent] = useState({
     name: '',
     description: '',
@@ -96,6 +99,12 @@ const RohitPage = ({ onNavigate }) => {
     }
   ]);
 
+  // Load current user on component mount
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    setCurrentUser(user);
+  }, []);
+
   const toggleExpanded = (item) => {
     setExpandedItems(prev => ({
       ...prev,
@@ -160,6 +169,24 @@ const RohitPage = ({ onNavigate }) => {
     alert('Settings functionality - Open settings panel');
   };
 
+  // Logout functionality
+  const handleLogoutClick = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
+    authService.logout();
+    setShowLogoutConfirm(false);
+    // Call the parent component's logout handler
+    if (onLogout) {
+      onLogout();
+    }
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
+
   const filteredConferences = conferences.filter(conference =>
     conference.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     conference.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -194,15 +221,24 @@ const RohitPage = ({ onNavigate }) => {
       <div className="main-content">
         <div className="blue-header">
           <h1 className="main-title">Research Conferences & Publications</h1>
-          <div className="search-container">
-            <input 
-              type="text" 
-              className="search-input" 
-              placeholder="Search anything here..."
-              value={searchQuery}
-              onChange={handleSearch}
-            />
-            <span className="search-icon">🔍</span>
+          <div className="header-right">
+            <div className="search-container">
+              <input 
+                type="text" 
+                className="search-input" 
+                placeholder="Search anything here..."
+                value={searchQuery}
+                onChange={handleSearch}
+              />
+              <span className="search-icon">🔍</span>
+            </div>
+            <button className="logout-btn" onClick={handleLogoutClick} title="Logout">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16,17 21,12 16,7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -213,8 +249,8 @@ const RohitPage = ({ onNavigate }) => {
                 <img src="dr-deepak.jpg" alt="Dr. Deepak" />
               </div>
               <div className="user-details">
-                <h3>Dr. deepak</h3>
-                <p>(Doctor of Research)</p>
+                <h3>{currentUser?.fullName || 'Dr. Deepak'}</h3>
+                <p>({currentUser?.department || 'Doctor of Research'})</p>
               </div>
             </div>
             <div className="action-buttons">
@@ -273,6 +309,7 @@ const RohitPage = ({ onNavigate }) => {
         New Event
       </button>
 
+      {/* New Event Modal */}
       {showNewEventModal && (
         <div className="modal-overlay" onClick={() => setShowNewEventModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -347,6 +384,37 @@ const RohitPage = ({ onNavigate }) => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="modal-overlay" onClick={cancelLogout}>
+          <div className="modal-content logout-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Confirm Logout</h2>
+              <button className="close-btn" onClick={cancelLogout}>✕</button>
+            </div>
+            <div className="logout-modal-body">
+              <div className="logout-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16,17 21,12 16,7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+              </div>
+              <p>Are you sure you want to logout?</p>
+              <p className="logout-subtitle">You will be redirected to the login page.</p>
+              <div className="logout-actions">
+                <button type="button" className="cancel-btn" onClick={cancelLogout}>
+                  Cancel
+                </button>
+                <button type="button" className="logout-confirm-btn" onClick={confirmLogout}>
+                  Yes, Logout
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
